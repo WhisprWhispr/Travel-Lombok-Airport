@@ -16,15 +16,11 @@ Selamat datang di repositori kode untuk **FreeWithRidho**, sebuah platform porto
 
 ## 📦 Panduan Instalasi (Menjalankan secara Lokal)
 
-1. *Clone* (unduh) repositori ini ke komputer Anda:
-   ```bash
-   git clone https://github.com/WhisprWhispr/bioprofilefree1.git
-   ```
-2. Instal dependensi NodeJS:
+1. Instal dependensi NodeJS:
    ```bash
    npm install
    ```
-3. Buat file bernama `.env` di direktori paling luar (root) dan masukkan konfigurasi Firebase Anda:
+2. Buat file bernama `.env` di direktori paling luar (root) dan masukkan konfigurasi Firebase Anda:
    ```env
    FIREBASE_API_KEY=xxx
    FIREBASE_AUTH_DOMAIN=xxx
@@ -34,11 +30,11 @@ Selamat datang di repositori kode untuk **FreeWithRidho**, sebuah platform porto
    FIREBASE_APP_ID=xxx
    FIREBASE_MEASUREMENT_ID=xxx
    ```
-4. Jalankan server pengembangan:
+3. Jalankan server pengembangan:
    ```bash
    npm start
    ```
-5. Buka web browser Anda dan kunjungi `http://localhost:3000`.
+4. Buka web browser Anda dan kunjungi `http://localhost:3000`.
 
 ## 🌐 Panduan Deployment (Netlify)
 Proyek ini telah dikonfigurasi agar siap di-hosting ke Netlify dengan pengaturan berikut:
