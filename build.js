@@ -35,13 +35,18 @@ copyRecursiveSync(srcDir, destDir);
 const scriptPath = path.join(destDir, 'script.js');
 if (fs.existsSync(scriptPath)) {
     let scriptContent = fs.readFileSync(scriptPath, 'utf8');
-    const apiKey = process.env.FIREBASE_API_KEY || '';
     
-    // Replace the placeholder with actual key
-    scriptContent = scriptContent.replace('__FIREBASE_API_KEY__', apiKey);
+    // Replace the placeholders with actual values
+    scriptContent = scriptContent.replace('__FIREBASE_API_KEY__', process.env.FIREBASE_API_KEY || '');
+    scriptContent = scriptContent.replace('__FIREBASE_AUTH_DOMAIN__', process.env.FIREBASE_AUTH_DOMAIN || '');
+    scriptContent = scriptContent.replace('__FIREBASE_PROJECT_ID__', process.env.FIREBASE_PROJECT_ID || '');
+    scriptContent = scriptContent.replace('__FIREBASE_STORAGE_BUCKET__', process.env.FIREBASE_STORAGE_BUCKET || '');
+    scriptContent = scriptContent.replace('__FIREBASE_MESSAGING_SENDER_ID__', process.env.FIREBASE_MESSAGING_SENDER_ID || '');
+    scriptContent = scriptContent.replace('__FIREBASE_APP_ID__', process.env.FIREBASE_APP_ID || '');
+    scriptContent = scriptContent.replace('__FIREBASE_MEASUREMENT_ID__', process.env.FIREBASE_MEASUREMENT_ID || '');
     
     fs.writeFileSync(scriptPath, scriptContent);
-    console.log('Build successful! API Key injected safely for deployment.');
+    console.log('Build successful! API keys and Firebase config injected safely for deployment.');
 } else {
     console.warn('script.js not found in dist.');
 }
