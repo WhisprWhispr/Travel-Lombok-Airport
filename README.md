@@ -45,4 +45,4 @@ Proyek ini telah dikonfigurasi agar siap di-hosting ke Netlify dengan pengaturan
 Pastikan Anda memasukkan variabel rahasia Firebase ke dalam menu *Environment Variables* di dashboard Netlify.
 
 ---
-*Didesain dan dikembangkan secara eksklusif untuk FreeWithRidho.*
+*Didesain dan dikembangkan secara eksklusif Dari FreeWithRidho.*
