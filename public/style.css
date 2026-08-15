@@ -1,0 +1,455 @@
+/* --- PENGATURAN DASAR --- */
+* {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+}
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-bottom: 40px;
+    overflow-x: hidden;
+    transition: background-color 0.6s ease, color 0.6s ease;
+    cursor: default;
+    background-image: radial-gradient(circle at 50% 0%, var(--bg-glow), var(--bg) 70%);
+}
+img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+a img { pointer-events: auto; }
+
+/* --- PENGATURAN WARNA --- */
+/* Diperbarui berdasarkan logo F Neon Biru dan Ungu */
+:root {
+    --bg: #070914; /* Sangat gelap/Navy hampir hitam */
+    --bg-glow: #131936;
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --accent: #00D2FF; /* Neon Cyan */
+    --accent-alt: #A033FF; /* Neon Purple */
+    --btn-surface: linear-gradient(145deg, #0e132b, #050711);
+    --shadow-dark: rgba(0, 0, 0, 0.9);
+    --shadow-light: rgba(15, 23, 48, 0.8);
+    --border-edge: rgba(0, 210, 255, 0.2);
+    --modal-bg: rgba(7, 9, 20, 0.95);
+    --cookie-bg: rgba(7, 9, 20, 0.85);
+}
+.light-mode {
+    --bg: #ebf0f7;
+    --bg-glow: #ffffff;
+    --text: #070914;
+    --text-muted: rgba(7, 9, 20, 0.8);
+    --accent: #A033FF; /* Ungu untuk kontras di mode terang */
+    --accent-alt: #00D2FF; 
+    --btn-surface: linear-gradient(145deg, #fbfdff, #d4dbe4);
+    --shadow-dark: rgba(184, 196, 211, 0.8);
+    --shadow-light: rgba(255, 255, 255, 1);
+    --border-edge: rgba(160, 51, 255, 0.3);
+    --modal-bg: rgba(255, 255, 255, 0.95);
+    --cookie-bg: rgba(255, 255, 255, 0.85);
+}
+
+/* --- TOMBOL MODE & LOADER --- */
+.toggle-mode {
+    position: fixed;
+    top: max(20px, env(safe-area-inset-top));
+    right: 20px;
+    background: var(--btn-surface);
+    color: var(--text);
+    border: 1px solid var(--border-edge);
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+.toggle-mode.show { display: flex; animation: fadeIn 1s ease forwards; }
+.toggle-mode:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 5px solid rgba(255,255,255,0.05);
+    border-top: 5px solid var(--accent);
+    border-right: 5px solid var(--accent-alt); /* Tambahan aksen ungu */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+    box-sizing: border-box;
+}
+.loader-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    animation: pulse 1.5s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+/* --- KONTEN UTAMA --- */
+.container {
+    margin-top: max(60px, env(safe-area-inset-top));
+    padding: 2rem 1.5rem max(4rem, env(safe-area-inset-bottom));
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    display: none;
+}
+.fadeInUp { animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.fadeIn { animation: fadeIn 1.2s ease forwards; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+.logo-wrapper { opacity: 0; margin-bottom: 1.5rem; }
+.logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light), inset 0 0 0 4px var(--bg);
+    margin: 0 auto;
+    border: 1px solid var(--border-edge);
+    background: var(--btn-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo img { width: 100%; height: 100%; object-fit: cover; }
+#title, #desc, .main-link, .social-icons, footer { opacity: 0; }
+
+h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.light-mode h1 { text-shadow: none; }
+.accent-text { color: var(--accent); }
+
+#desc {
+    font-size: 0.85rem;
+    margin-top: 5px;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* --- IKON SOSIAL MEDIA 3D --- */
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+}
+.social-icons a {
+    background: var(--btn-surface);
+    border-radius: 50%;
+    box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-edge);
+    text-decoration: none;
+    position: relative;
+}
+.social-icons a::after {
+    content: attr(aria-label);
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px) scale(0.8);
+    background: var(--cookie-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: var(--text);
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 10;
+}
+.social-icons a:hover::after, .social-icons a:active::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+.social-icons i { font-size: 1.1rem; color: var(--text); transition: all 0.3s ease; z-index: 2; }
+.social-icons a:hover { transform: translateY(-5px) scale(1.05); }
+.social-icons a:hover i { color: #ffffff; transform: scale(1.15); }
+.social-icons a:active { transform: translateY(2px); box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light); }
+
+/* Custom Colors for Social Media */
+.social-icons a.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.5); border-color: transparent;}
+.social-icons a.email:hover { background: #EA4335; box-shadow: 0 10px 20px rgba(234, 67, 53, 0.5); border-color: transparent;}
+.social-icons a.fb:hover { background: #1877F2; box-shadow: 0 10px 20px rgba(24, 119, 242, 0.5); border-color: transparent;}
+.social-icons a.yt:hover { background: #FF0000; box-shadow: 0 10px 20px rgba(255, 0, 0, 0.5); border-color: transparent;}
+.social-icons a.threads:hover { background: #000000; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); border-color: transparent;}
+.social-icons a.tiktok:hover { background: #000000; box-shadow: 0 10px 20px rgba(0, 242, 254, 0.4); border-color: #00f2fe;}
+.social-icons a.wa:hover { background: #25D366; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.5); border-color: transparent;}
+.light-mode .social-icons a:hover i { color: #ffffff; }
+
+/* --- TOMBOL UTAMA DENGAN EFEK NEON --- */
+.main-link {
+    background: var(--btn-surface);
+    color: var(--text);
+    text-decoration: none;
+    padding: 1.2rem 2rem;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    box-shadow: 8px 8px 20px var(--shadow-dark), -8px -8px 20px var(--shadow-light), inset 1px 1px 2px rgba(255,255,255,0.1);
+    border: 1px solid var(--border-edge);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin: 0 auto 1.5rem;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animasi Gradient Glow */
+.main-link::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.4), transparent);
+    transition: all 0.5s ease;
+}
+
+.main-link:hover {
+    background: linear-gradient(45deg, var(--accent), var(--accent-alt));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 12px 25px rgba(0, 210, 255, 0.4), 0 0 15px rgba(160, 51, 255, 0.5), inset 2px 2px 5px rgba(255,255,255,0.3);
+    transform: translateY(-4px);
+}
+.main-link:hover::before {
+    left: 100%;
+}
+.main-link:active {
+    transform: translateY(2px);
+    box-shadow: inset 6px 6px 12px rgba(0,0,0,0.5), inset -6px -6px 12px rgba(255,255,255,0.1);
+}
+
+/* --- FOOTER & KEBIJAKAN PRIVASI --- */
+footer {
+    font-size: 0.8rem;
+    text-align: center;
+    color: var(--text);
+    margin-top: 1rem;
+    line-height: 1.8;
+    opacity: 0;
+}
+.privacy-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+.privacy-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+}
+.privacy-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: var(--accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+.privacy-links a:hover { opacity: 1; color: var(--accent); }
+.privacy-links a:hover::after { width: 100%; }
+.footer-line { display: block; opacity: 0.5; font-size: 0.75rem; }
+
+/* --- POPUP MODAL KEBIJAKAN PRIVASI --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active { display: flex; opacity: 1; }
+.modal-content {
+    background: var(--modal-bg);
+    color: var(--text);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(160, 51, 255, 0.1);
+    border: 1px solid var(--border-edge);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow-y: auto;
+    text-align: left;
+}
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--text);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+.close-modal:hover { opacity: 1; color: var(--accent); }
+.modal-content h2 { margin-top: 0; color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--border-edge); padding-bottom: 10px; }
+.modal-content p { font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 1rem; font-style: normal; opacity: 1; }
+.modal-content::-webkit-scrollbar { width: 6px; }
+.modal-content::-webkit-scrollbar-track { background: transparent; }
+.modal-content::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+/* --- COOKIE CONSENT BANNER --- */
+.cookie-banner {
+    position: fixed;
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    background: var(--cookie-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    padding: 20px 25px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 9998;
+    transition: bottom 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.cookie-banner.show {
+    bottom: calc(25px + env(safe-area-inset-bottom, 0px));
+}
+.cookie-icon {
+    font-size: 2.5rem;
+    margin-bottom: -10px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.cookie-text {
+    font-size: 0.85rem;
+    color: var(--text);
+    text-align: center;
+    margin: 0;
+    line-height: 1.5;
+}
+.cookie-text a { color: var(--accent); text-decoration: none; font-weight: 700; }
+.cookie-text a:hover { text-decoration: underline; }
+.cookie-btn {
+    background: linear-gradient(45deg, var(--accent), var(--accent-alt));
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+.cookie-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(160, 51, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem 1rem max(3rem, env(safe-area-inset-bottom));
+    }
+    .logo { width: 100px; height: 100px; }
+    .social-icons { gap: 0.5rem; margin-bottom: 1.5rem; }
+    .social-icons a { width: 38px; height: 38px; }
+    .social-icons i { font-size: 1rem; }
+    .main-link { font-size: 1.3rem; padding: 1rem 1.5rem; }
+    .privacy-links { gap: 10px; font-size: 0.8rem; }
+    .cookie-banner { width: 95%; padding: 15px 20px; }
+}
