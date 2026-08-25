@@ -6,25 +6,27 @@ if (isProduction) {
     console.info = function() {};
 }
 
-// Konfigurasi Firebase bawaan
+// Konfigurasi Firebase Anda
 const firebaseConfig = {
-    apiKey: "__FIREBASE_API_KEY__",
-    authDomain: "__FIREBASE_AUTH_DOMAIN__",
-    projectId: "__FIREBASE_PROJECT_ID__",
-    storageBucket: "__FIREBASE_STORAGE_BUCKET__",
-    messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
-    appId: "__FIREBASE_APP_ID__",
-    measurementId: "__FIREBASE_MEASUREMENT_ID__"
+  apiKey: "AIzaSyA6iPEJgUiZpRkt6YMaIk4Z2tglVF1MiBs",
+  authDomain: "travellombokairport.firebaseapp.com",
+  projectId: "travellombokairport",
+  storageBucket: "travellombokairport.firebasestorage.app",
+  messagingSenderId: "1091706966192",
+  appId: "1:1091706966192:web:4eea0b5132e7c353c8ab75",
+  measurementId: "G-GJF6K62P23"
 };
 
 let db;
-if (firebaseConfig.apiKey !== "ISI_API_KEY_KAMU") {
-    if (typeof firebase !== 'undefined' && !firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
+let analytics;
+if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    if (typeof firebase.analytics === 'function') {
+        analytics = firebase.analytics();
     }
-    if (typeof firebase !== 'undefined') {
-        db = firebase.firestore();
-    }
+}
+if (typeof firebase !== 'undefined') {
+    db = firebase.firestore();
 }
 
 const toggleBtn = document.getElementById('modeToggle');
