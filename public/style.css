@@ -69,14 +69,14 @@ a img { pointer-events: auto; }
     padding: 8px 16px;
     font-size: 0.9rem;
     font-weight: 600;
-    display: none;
+    display: flex;
     align-items: center;
     gap: 6px;
     box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
     cursor: pointer;
     z-index: 1000;
     transition: all 0.3s ease;
-    opacity: 0;
+    opacity: 1;
 }
 .toggle-mode.show { display: flex; animation: fadeIn 1s ease forwards; }
 .toggle-mode:active { box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light); }
