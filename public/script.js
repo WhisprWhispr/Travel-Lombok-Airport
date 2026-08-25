@@ -138,7 +138,7 @@ window.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => document.getElementById('title').classList.add('fadeInUp'), 150);
         setTimeout(() => document.getElementById('desc').classList.add('fadeInUp'), 300);
         setTimeout(() => document.getElementById('socials').classList.add('fadeInUp'), 450);
-        setTimeout(() => document.getElementById('mainLink').classList.add('fadeInUp'), 600);
+        setTimeout(() => document.querySelectorAll('.main-link').forEach(el => el.classList.add('fadeInUp')), 600);
         setTimeout(() => document.getElementById('footer').classList.add('fadeIn'), 800);
         setTimeout(() => {
             logoWrap.style.opacity = '1';
