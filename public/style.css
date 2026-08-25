@@ -131,7 +131,7 @@ a img { pointer-events: auto; }
     width: 100%;
     max-width: 480px;
     text-align: center;
-    display: block;
+    display: none;
 }
 .fadeInUp { animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
 .fadeIn { animation: fadeIn 1.2s ease forwards; }
