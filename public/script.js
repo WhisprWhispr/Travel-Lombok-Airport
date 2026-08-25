@@ -163,3 +163,19 @@ document.addEventListener('keydown', function(e) {
         if (e.shiftKey && (e.key === 'c' || e.key === 'C' || e.keyCode === 67)) { e.preventDefault(); return false; }
     }
 });
+
+// Firebase Configuration and Initialization
+const firebaseConfig = {
+  apiKey: "AIzaSyA6iPEJgUiZpRkt6YMaIk4Z2tglVF1MiBs",
+  authDomain: "travellombokairport.firebaseapp.com",
+  projectId: "travellombokairport",
+  storageBucket: "travellombokairport.firebasestorage.app",
+  messagingSenderId: "1091706966192",
+  appId: "1:1091706966192:web:4eea0b5132e7c353c8ab75",
+  measurementId: "G-GJF6K62P23"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
+// const db = firebase.firestore(); // Uncomment if you want to use Firestore later
