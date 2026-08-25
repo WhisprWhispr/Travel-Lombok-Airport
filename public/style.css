@@ -249,6 +249,8 @@ h1 {
 
 /* --- TOMBOL UTAMA DENGAN EFEK NEON --- */
 .main-link {
+    opacity: 1 !important;
+    visibility: visible !important;
     background: linear-gradient(45deg, var(--accent), var(--accent-alt));
     color: #ffffff;
     text-decoration: none;
