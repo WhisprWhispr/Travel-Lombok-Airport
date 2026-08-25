@@ -27,32 +27,32 @@ img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
 a img { pointer-events: auto; }
 
 /* --- PENGATURAN WARNA --- */
-/* Diperbarui berdasarkan logo F Neon Biru dan Ungu */
+/* Diperbarui berdasarkan logo Travel Lombok Airport Biru dan Hijau */
 :root {
-    --bg: #070914; /* Sangat gelap/Navy hampir hitam */
-    --bg-glow: #131936;
+    --bg: #0b101e; /* Profesional Dark Navy */
+    --bg-glow: #151e32;
     --text: #ffffff;
     --text-muted: rgba(255, 255, 255, 0.7);
-    --accent: #00D2FF; /* Neon Cyan */
-    --accent-alt: #A033FF; /* Neon Purple */
-    --btn-surface: linear-gradient(145deg, #0e132b, #050711);
-    --shadow-dark: rgba(0, 0, 0, 0.9);
-    --shadow-light: rgba(15, 23, 48, 0.8);
-    --border-edge: rgba(0, 210, 255, 0.2);
-    --modal-bg: rgba(7, 9, 20, 0.95);
-    --cookie-bg: rgba(7, 9, 20, 0.85);
+    --accent: #009fe3; /* Blue dari logo */
+    --accent-alt: #1db544; /* Green dari logo */
+    --btn-surface: linear-gradient(145deg, #111827, #0b101e);
+    --shadow-dark: rgba(0, 0, 0, 0.8);
+    --shadow-light: rgba(21, 30, 50, 0.5);
+    --border-edge: rgba(0, 159, 227, 0.2);
+    --modal-bg: rgba(11, 16, 30, 0.95);
+    --cookie-bg: rgba(11, 16, 30, 0.85);
 }
 .light-mode {
-    --bg: #ebf0f7;
+    --bg: #f8fafc;
     --bg-glow: #ffffff;
-    --text: #070914;
-    --text-muted: rgba(7, 9, 20, 0.8);
-    --accent: #A033FF; /* Ungu untuk kontras di mode terang */
-    --accent-alt: #00D2FF; 
-    --btn-surface: linear-gradient(145deg, #fbfdff, #d4dbe4);
-    --shadow-dark: rgba(184, 196, 211, 0.8);
+    --text: #0f172a;
+    --text-muted: rgba(15, 23, 42, 0.7);
+    --accent: #009fe3; /* Blue */
+    --accent-alt: #1db544; /* Green */
+    --btn-surface: linear-gradient(145deg, #ffffff, #f1f5f9);
+    --shadow-dark: rgba(203, 213, 225, 0.6);
     --shadow-light: rgba(255, 255, 255, 1);
-    --border-edge: rgba(160, 51, 255, 0.3);
+    --border-edge: rgba(0, 159, 227, 0.2);
     --modal-bg: rgba(255, 255, 255, 0.95);
     --cookie-bg: rgba(255, 255, 255, 0.85);
 }
@@ -102,10 +102,10 @@ a img { pointer-events: auto; }
     height: 100%;
     border: 5px solid rgba(255,255,255,0.05);
     border-top: 5px solid var(--accent);
-    border-right: 5px solid var(--accent-alt); /* Tambahan aksen ungu */
+    border-right: 5px solid var(--accent-alt); /* Tambahan aksen green */
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 159, 227, 0.4);
     box-sizing: border-box;
 }
 .loader-img {
@@ -272,7 +272,7 @@ h1 {
     content: '';
     position: absolute;
     top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 159, 227, 0.4), transparent);
     transition: all 0.5s ease;
 }
 
@@ -280,7 +280,7 @@ h1 {
     background: linear-gradient(45deg, var(--accent), var(--accent-alt));
     color: white;
     border-color: transparent;
-    box-shadow: 0 12px 25px rgba(0, 210, 255, 0.4), 0 0 15px rgba(160, 51, 255, 0.5), inset 2px 2px 5px rgba(255,255,255,0.3);
+    box-shadow: 0 12px 25px rgba(0, 159, 227, 0.4), 0 0 15px rgba(29, 181, 68, 0.5), inset 2px 2px 5px rgba(255,255,255,0.3);
     transform: translateY(-4px);
 }
 .main-link:hover::before {
@@ -357,7 +357,7 @@ footer {
     max-height: 80vh;
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(160, 51, 255, 0.1);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(0, 159, 227, 0.1);
     border: 1px solid var(--border-edge);
     position: relative;
     transform: translateY(20px);
@@ -432,13 +432,13 @@ footer {
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 159, 227, 0.3);
     transition: all 0.3s ease;
     width: 100%;
 }
 .cookie-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(160, 51, 255, 0.5);
+    box-shadow: 0 8px 20px rgba(29, 181, 68, 0.5);
 }
 
 @media (max-width: 768px) {
