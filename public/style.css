@@ -94,7 +94,15 @@ a img { pointer-events: auto; }
     align-items: center;
     justify-content: center;
 }
-.loader::before {
+.loader-spinner {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader-spinner::before {
     content: '';
     position: absolute;
     top: 0;
@@ -103,15 +111,15 @@ a img { pointer-events: auto; }
     height: 100%;
     border: 5px solid rgba(255,255,255,0.05);
     border-top: 5px solid var(--accent);
-    border-right: 5px solid var(--accent-alt); /* Tambahan aksen green */
+    border-right: 5px solid var(--accent-alt);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     box-shadow: 0 0 20px rgba(0, 159, 227, 0.4);
     box-sizing: border-box;
 }
 .loader-img {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     animation: pulse 1.5s ease-in-out infinite;
