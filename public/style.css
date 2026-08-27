@@ -463,6 +463,37 @@ footer {
     box-shadow: 0 8px 20px rgba(29, 181, 68, 0.5);
 }
 
+/* --- GOOGLE TRANSLATE --- */
+#google_translate_element {
+    position: fixed !important;
+    top: max(14px, env(safe-area-inset-top)) !important;
+    left: 14px !important;
+    z-index: 99999 !important;
+}
+.goog-te-gadget-simple {
+    background: var(--btn-surface) !important;
+    border: 1px solid var(--border-edge) !important;
+    border-radius: 20px !important;
+    padding: 6px 12px !important;
+    font-size: 0.75rem !important;
+    font-family: 'Poppins', sans-serif !important;
+    box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light) !important;
+    display: flex !important;
+    align-items: center;
+}
+.goog-te-gadget-simple .goog-te-menu-value span {
+    color: var(--text) !important;
+    font-weight: 600 !important;
+}
+.goog-te-gadget-icon {
+    display: none !important;
+}
+.goog-te-banner-frame {
+    display: none !important;
+}
+body {
+    top: 0 !important;
+}
 
 @media (max-width: 480px) {
     .container {

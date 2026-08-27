@@ -95,6 +95,8 @@
   </div>
 </div>
 
+<div id="google_translate_element"></div>
+
 <button class="toggle-mode" id="modeToggle" onclick="toggleMode()">
 <span class="icon">☀️</span> Light Mode
 </button>
@@ -188,6 +190,18 @@ Kami menggunakan cookie dan teknologi pelacakan untuk memastikan Anda mendapatka
 </p>
 <button class="cookie-btn" onclick="acceptCookies()">Saya Mengerti & Setuju</button>
 </div>
+
+<!-- Google Translate -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'id', 
+    includedLanguages: 'id,en,ms,zh-CN,ja,ar', 
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <!-- External Script -->
 <script src="script.js?v=6"></script>
