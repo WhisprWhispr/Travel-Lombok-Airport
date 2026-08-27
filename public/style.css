@@ -463,33 +463,60 @@ footer {
     box-shadow: 0 8px 20px rgba(29, 181, 68, 0.5);
 }
 
-/* --- GOOGLE TRANSLATE --- */
-#google_translate_element {
+/* --- CUSTOM TRANSLATE & HIDE GOOGLE --- */
+.custom-translate {
     position: fixed !important;
     top: max(14px, env(safe-area-inset-top)) !important;
     left: 14px !important;
-    z-index: 99999 !important;
-}
-.goog-te-gadget-simple {
-    background: var(--btn-surface) !important;
-    border: 1px solid var(--border-edge) !important;
-    border-radius: 20px !important;
-    padding: 6px 12px !important;
-    font-size: 0.75rem !important;
-    font-family: 'Poppins', sans-serif !important;
-    box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light) !important;
+    background: var(--btn-surface);
+    border: 1px solid var(--border-edge);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
     display: flex !important;
     align-items: center;
+    gap: 6px;
+    box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+    z-index: 99999 !important;
+    color: var(--text);
+    transition: all 0.3s ease;
 }
-.goog-te-gadget-simple .goog-te-menu-value span {
-    color: var(--text) !important;
-    font-weight: 600 !important;
+.custom-translate:active {
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
 }
-.goog-te-gadget-icon {
+.custom-translate select {
+    background: transparent;
+    color: var(--text);
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 5px;
+}
+.custom-translate select option {
+    background: var(--bg);
+    color: var(--text);
+}
+.light-mode .custom-translate select option {
+    background: #ffffff;
+    color: #0f172a;
+}
+/* Hide all Google Translate elements */
+#google_translate_element,
+.skiptranslate iframe,
+.goog-te-banner-frame,
+#goog-gt-tt {
     display: none !important;
 }
-.goog-te-banner-frame {
-    display: none !important;
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 body {
     top: 0 !important;

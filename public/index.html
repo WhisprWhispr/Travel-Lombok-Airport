@@ -95,7 +95,21 @@
   </div>
 </div>
 
-<div id="google_translate_element"></div>
+<!-- Custom Translate UI -->
+<div class="custom-translate">
+  <i class="fa-solid fa-globe"></i>
+  <select id="custom_lang_selector" onchange="changeLanguage(this.value)">
+    <option value="id">🇮🇩 ID</option>
+    <option value="en">🇬🇧 EN</option>
+    <option value="ms">🇲🇾 MS</option>
+    <option value="zh-CN">🇨🇳 ZH</option>
+    <option value="ja">🇯🇵 JA</option>
+    <option value="ar">🇸🇦 AR</option>
+  </select>
+</div>
+
+<!-- Hidden Google Translate Element -->
+<div id="google_translate_element" style="display: none;"></div>
 
 <button class="toggle-mode" id="modeToggle" onclick="toggleMode()">
 <span class="icon">☀️</span> Light Mode
@@ -196,9 +210,17 @@ Kami menggunakan cookie dan teknologi pelacakan untuk memastikan Anda mendapatka
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
     pageLanguage: 'id', 
-    includedLanguages: 'id,en,ms,zh-CN,ja,ar', 
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    includedLanguages: 'id,en,ms,zh-CN,ja,ar',
+    autoDisplay: false
   }, 'google_translate_element');
+}
+
+function changeLanguage(lang) {
+  var teCombo = document.querySelector('.goog-te-combo');
+  if (teCombo) {
+    teCombo.value = lang;
+    teCombo.dispatchEvent(new Event('change'));
+  }
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
