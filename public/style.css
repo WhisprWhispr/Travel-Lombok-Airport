@@ -215,7 +215,15 @@ h1 {
     border: 1px solid var(--border-edge);
     text-decoration: none;
     position: relative;
+    animation: float 3s ease-in-out infinite;
 }
+.social-icons a:nth-child(1) { animation-delay: 0s; }
+.social-icons a:nth-child(2) { animation-delay: 0.2s; }
+.social-icons a:nth-child(3) { animation-delay: 0.4s; }
+.social-icons a:nth-child(4) { animation-delay: 0.6s; }
+.social-icons a:nth-child(5) { animation-delay: 0.8s; }
+.social-icons a:nth-child(6) { animation-delay: 1.0s; }
+.social-icons a:nth-child(7) { animation-delay: 1.2s; }
 .social-icons a::after {
     content: attr(aria-label);
     position: absolute;
@@ -243,9 +251,9 @@ h1 {
     transform: translateX(-50%) translateY(0) scale(1);
 }
 .social-icons i { font-size: 1.1rem; color: var(--text); transition: all 0.3s ease; z-index: 2; }
-.social-icons a:hover { transform: translateY(-5px) scale(1.05); }
+.social-icons a:hover { animation-play-state: paused; transform: translateY(-5px) scale(1.05); }
 .social-icons a:hover i { color: #ffffff; transform: scale(1.15); }
-.social-icons a:active { transform: translateY(2px); box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light); }
+.social-icons a:active { animation-play-state: paused; transform: translateY(2px); box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light); }
 
 /* Custom Colors for Social Media */
 .social-icons a.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 10px 20px rgba(220, 39, 67, 0.5); border-color: transparent;}
